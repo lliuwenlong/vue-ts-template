@@ -18,7 +18,7 @@ module.exports = defineConfig({
         entry: './src/main.ts',
         plugins: [
             new StyleLintPlugin({
-                files: ['src/**/*.{vue,htm,html,css,sss,less,scss,sass}'],
+                files: ['src/**/*.{vue,htm,html,css,less,scss,sass}'],
                 fix: false,
                 cache: false,
                 emitError: true,
