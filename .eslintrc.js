@@ -246,6 +246,15 @@ module.exports = {
                 'mp3': 'always'
             }
         ],
+        'import/no-anonymous-default-export': ['error', {
+            allowArray: false,
+            allowArrowFunction: true,
+            allowAnonymousClass: true,
+            allowAnonymousFunction: false,
+            allowCallExpression: true,
+            allowLiteral: false,
+            allowObject: true
+        }],
         /* vue 相关的 */
         'vue/attribute-hyphenation': 'error',
         'vue/attributes-order': 'error',
