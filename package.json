@@ -2,15 +2,32 @@
   "name": "vue-template",
   "version": "0.1.0",
   "private": true,
+  "eslintConfig": {
+    "plugins": [
+      "example"
+    ],
+    "env": {
+      "example/custom": true
+    }
+  },
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint --no-fix",
+    "build:dev": "vue-cli-service build --mode development",
+    "build:qa": "vue-cli-service build --mode qa",
+    "lint:fix": "vue-cli-service lint",
+    "prod-serve": "vue-cli-service serve --mode prod",
+    "qa-serve": "vue-cli-service serve --mode qa",
+    "style:lint": "stylelint 'src/**/*.{css,scss,sass,less,vue}'",
+    "style:lint-fix": "stylelint 'src/**/*.{css,scss,sass,less,vue}' --fix"
   },
   "dependencies": {
+    "@vue/composition-api": "^1.6.1",
+    "axios": "^0.27.2",
     "core-js": "^3.8.3",
+    "pinia": "^2.0.14",
     "register-service-worker": "^1.7.2",
     "vue": "^2.6.14",
     "vue-class-component": "^7.2.3",
@@ -28,60 +45,51 @@
     "@vue/cli-plugin-pwa": "~5.0.0",
     "@vue/cli-plugin-router": "~5.0.0",
     "@vue/cli-plugin-typescript": "~5.0.0",
-    "@vue/cli-plugin-unit-mocha": "~5.0.0",
+    "@vue/cli-plugin-unit-mocha": "^4.5.17",
     "@vue/cli-service": "~5.0.0",
     "@vue/eslint-config-airbnb": "^6.0.0",
+    "@vue/eslint-config-prettier": "^7.0.0",
     "@vue/eslint-config-typescript": "^9.1.0",
+    "@vue/runtime-dom": "^3.2.33",
     "@vue/test-utils": "^1.1.3",
     "chai": "^4.2.0",
     "chromedriver": "101",
     "eslint": "^7.32.0",
-    "eslint-plugin-import": "^2.25.3",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-import-resolver-alias": "^1.1.2",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-vue": "^8.0.3",
     "eslint-plugin-vuejs-accessibility": "^1.1.0",
-    "lint-staged": "^11.1.2",
+    "lint-staged": "^10.5.3",
+    "postcss-html": "^1.4.1",
+    "postcss-sass": "^0.5.0",
+    "prettier": "^2.6.2",
     "sass": "^1.32.7",
     "sass-loader": "^12.0.0",
+    "stylelint-config-recommended-vue": "^1.4.0",
+    "stylelint-config-standard": "^25.0.0",
+    "stylelint-config-standard-scss": "^3.0.0",
+    "stylelint-order": "^5.0.0",
+    "stylelint-scss": "^4.2.0",
+    "stylelint-selector-bem-pattern": "^2.1.1",
+    "stylelint-webpack-plugin": "^3.2.0",
     "ts-node": "^9.1.1",
     "typescript": "~4.5.5",
+    "unplugin-vue2-script-setup": "^0.10.2",
     "vue-template-compiler": "^2.6.14",
     "wdio-chromedriver-service": "^7.0.0"
   },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/essential",
-      "@vue/airbnb",
-      "@vue/typescript/recommended"
-    ],
-    "parserOptions": {
-      "ecmaVersion": 2020
-    },
-    "rules": {},
-    "overrides": [
-      {
-        "files": [
-          "**/__tests__/*.{j,t}s?(x)",
-          "**/tests/unit/**/*.spec.{j,t}s?(x)"
-        ],
-        "env": {
-          "mocha": true
-        }
-      }
-    ]
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not dead"
-  ],
   "gitHooks": {
-    "pre-commit": "lint-staged"
+    "pre-commit": "lint-staged",
+    "commit-msg": "node scripts/verify-commit-msg.js"
   },
   "lint-staged": {
-    "*.{js,jsx,vue,ts,tsx}": "vue-cli-service lint"
+    "*.{js,ts,vue}": [
+      "npm run lint"
+    ],
+    "*.{css,scss,sass,less,vue}": [
+      "npm run style:lint"
+    ]
   }
 }
