@@ -459,7 +459,8 @@ module.exports = {
         'vue/valid-v-show': 'error',
         'vue/valid-v-slot': 'error',
         'vue/valid-v-text': 'error',
-        'vue/first-attribute-linebreak': 'error'
+        'vue/first-attribute-linebreak': 'error',
+        'vue/space-infix-ops': 'error'
     },
 
     settings: {
