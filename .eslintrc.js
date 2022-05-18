@@ -200,9 +200,9 @@ module.exports = {
         }],
         'prefer-arrow-callback': [1, { 'allowNamedFunctions': true }],
         'prefer-destructuring': [
-            1,
+            2,
             {
-                'array': true,
+                'array': false,
                 'object': true
             },
             { 'enforceForRenamedProperties': false }
